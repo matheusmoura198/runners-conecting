@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A55DB">
+  <title>Provas e corridas | Runners Conecting</title>
+  <link rel="icon" href="img/logo.png" type="image/png">
+
+  <!-- Fontes (só visual). Se ficarem sem internet, o navegador usa uma fonte parecida. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <noscript>
+    <p class="aviso-noscript">Este site precisa do JavaScript ativado para funcionar.</p>
+  </noscript>
+
+  <!-- A página só aparece depois que o script confirma que você está logado -->
+  <div id="pagina" hidden>
+
+    <header class="topo">
+      <div class="topo-conteudo">
+        <a class="marca" href="index.html#inicio">
+          <img src="img/logo.png" alt="" width="36" height="36">
+          <span>Runners Conecting</span>
+        </a>
+        <button type="button" id="botao-sair" class="botao-sair">Sair</button>
+        <nav class="menu" aria-label="Seções do site">
+          <a href="index.html#inicio">Início</a>
+          <a href="index.html#equipes">Equipes</a>
+          <a href="#calendario">Provas</a>
+          <a id="link-cadastro" href="#cadastro" hidden>Cadastrar prova</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <section id="calendario" class="secao">
+        <div class="container">
+          <h2 class="titulo-secao">Provas e corridas</h2>
+          <p class="texto-secao">Corridas divulgadas pelos líderes das equipes: data, local, valor da inscrição e a arte de divulgação.</p>
+
+          <div class="abas abas-duvidas abas-area" role="tablist" aria-label="Provas futuras ou passadas">
+            <button type="button" id="aba-proximas" class="aba" role="tab" aria-selected="true">Próximas</button>
+            <button type="button" id="aba-passadas" class="aba" role="tab" aria-selected="false">Já aconteceram</button>
+          </div>
+
+          <div class="campo filtro-cidade">
+            <label for="filtro-cidade">Cidade</label>
+            <select id="filtro-cidade">
+              <option value="">Todas as cidades</option>
+            </select>
+          </div>
+
+          <p id="msg-lista" class="mensagem" role="alert"></p>
+          <div id="lista-provas" class="lista-provas"></div>
+          <p id="sem-provas" class="vazio" hidden></p>
+        </div>
+      </section>
+
+      <!-- Só líderes (e o admin) veem esta parte -->
+      <section id="cadastro" class="secao secao-clara" hidden>
+        <div class="container">
+          <h2 class="titulo-secao">Cadastrar prova</h2>
+          <p class="texto-secao">Divulgue uma corrida para todos os usuários do site. Você pode editar ou apagar as provas que cadastrou.</p>
+
+          <details id="area-prova" class="area-lider area-aviso">
+            <summary id="resumo-prova">Nova prova</summary>
+
+            <form id="form-prova" class="formulario form-treino" novalidate>
+              <div class="campo">
+                <label for="prova-nome">Nome da prova</label>
+                <input id="prova-nome" type="text" maxlength="100" placeholder="Ex.: Corrida de Aniversário da Cidade">
+              </div>
+
+              <div class="campo-dupla">
+                <div class="campo">
+                  <label for="prova-data">Data</label>
+                  <input id="prova-data" type="date">
+                </div>
+                <div class="campo">
+                  <label for="prova-horario">Horário da largada</label>
+                  <input id="prova-horario" type="time">
+                </div>
+              </div>
+
+              <div class="campo-dupla">
+                <div class="campo">
+                  <label for="prova-cidade">Cidade</label>
+                  <input id="prova-cidade" type="text" maxlength="80">
+                </div>
+                <div class="campo">
+                  <label for="prova-local">Local da largada (opcional)</label>
+                  <input id="prova-local" type="text" maxlength="150" placeholder="Ex.: Praça Central">
+                </div>
+              </div>
+
+              <div class="campo-dupla">
+                <div class="campo">
+                  <label for="prova-valor">Valor da inscrição (R$)</label>
+                  <input id="prova-valor" type="text" inputmode="decimal" maxlength="10" placeholder="Ex.: 80,00">
+                  <label class="prova-gratuita">
+                    <input id="prova-gratuita" type="checkbox"> Inscrição gratuita
+                  </label>
+                </div>
+                <div class="campo">
+                  <label for="prova-distancias">Distâncias (opcional)</label>
+                  <input id="prova-distancias" type="text" maxlength="100" placeholder="Ex.: 5 km e 10 km">
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="prova-link">Link de inscrição (opcional)</label>
+                <input id="prova-link" type="url" maxlength="500" placeholder="https://">
+              </div>
+
+              <div class="campo">
+                <label for="prova-observacoes">Observações (opcional)</label>
+                <textarea id="prova-observacoes" rows="3" maxlength="500" placeholder="Kit, premiação, retirada do número..."></textarea>
+              </div>
+
+              <div class="post-foto-linha">
+                <input id="prova-imagem" class="campo-arquivo" type="file" accept="image/*">
+                <label for="prova-imagem" class="botao-arquivo">Adicionar arte de divulgação</label>
+
+                <div id="previa-prova" class="previa-foto" hidden>
+                  <img id="previa-prova-imagem" alt="Prévia da arte escolhida">
+                  <button type="button" id="botao-remover-imagem" class="botao-texto botao-texto-perigo">Remover imagem</button>
+                </div>
+              </div>
+
+              <p id="msg-prova" class="mensagem" role="alert"></p>
+              <div class="form-botoes">
+                <button type="submit" id="botao-salvar-prova" class="botao">Publicar prova</button>
+                <button type="button" id="botao-cancelar-edicao" class="botao-sair" hidden>Cancelar edição</button>
+              </div>
+            </form>
+          </details>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="rodape">
+      <div class="container">
+        <p>Runners Conecting. Equipes de corrida da região, organizadas. <a href="privacidade.html">Termos e privacidade</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Biblioteca do Supabase (única biblioteca externa do site) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="comum.js"></script>
+  <script src="provas.js"></script>
+</body>
+</html>
