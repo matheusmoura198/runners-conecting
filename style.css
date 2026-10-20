@@ -1963,3 +1963,114 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+
+/* ---------- Provas e corridas ---------- */
+
+.filtro-cidade {
+  max-width: 320px;
+  margin: 1rem 0;
+}
+
+.filtro-cidade select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  background: var(--branco);
+  font: inherit;
+  color: var(--preto);
+}
+
+.lista-provas {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.prova {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  background: var(--branco);
+}
+
+.prova-imagem-link {
+  display: block;
+  background: var(--azul-claro);
+}
+
+.prova-imagem {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.prova-corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.prova-nome {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  color: var(--azul-escuro);
+}
+
+.prova-quando {
+  margin: 0.1rem 0 0.75rem;
+  font-weight: 600;
+}
+
+.prova-dados {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.prova-dados dt {
+  color: var(--texto-suave);
+}
+
+.prova-dados dd {
+  margin: 0;
+}
+
+.prova-obs {
+  margin: 0 0 0.75rem;
+  font-size: 0.97rem;
+  white-space: pre-line;
+}
+
+.prova-divulgada {
+  margin: 0 0 0.9rem;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.prova-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.9rem;
+  align-items: center;
+  margin-top: auto;
+}
+
+.prova-gratuita {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 760px) {
+  .lista-provas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
