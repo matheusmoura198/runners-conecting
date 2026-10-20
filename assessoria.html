@@ -34,6 +34,7 @@
           <a href="index.html#inicio">Início</a>
           <a href="index.html#equipes">Equipes</a>
           <a href="#apresentacao">Apresentação</a>
+          <a id="link-planos" href="#planos" hidden>Planos</a>
           <a id="link-area-alunos" href="#area-alunos" hidden>Treinos e publicações</a>
           <a id="link-gestao" href="#gestao" hidden>Alunos</a>
         </nav>
@@ -124,6 +125,33 @@
 
               <p id="msg-apresentacao" class="mensagem" role="alert"></p>
               <button type="submit" id="botao-salvar-apresentacao" class="botao">Salvar</button>
+            </form>
+          </details>
+        </div>
+      </section>
+
+      <!-- PLANOS (todo mundo vê; o treinador edita) -->
+      <section id="planos" class="secao secao-clara" hidden>
+        <div class="container">
+          <h2 class="titulo-secao">Planos</h2>
+          <p id="planos-oferta" class="planos-oferta" hidden></p>
+          <div id="lista-planos" class="lista-planos"></div>
+          <p id="planos-aviso" class="planos-aviso" hidden>Valores e condições definidos pela assessoria. Confirme com o treinador antes de contratar.</p>
+
+          <!-- Só o treinador (e o admin) vê esta parte -->
+          <details id="area-planos" class="area-lider area-aviso" hidden>
+            <summary>Editar planos</summary>
+
+            <form id="form-planos" class="formulario form-treino" novalidate>
+              <div class="campo">
+                <label for="oferta-campo">Chamada da promoção (opcional)</label>
+                <input id="oferta-campo" type="text" maxlength="80" placeholder="1 mês com desconto para você começar">
+              </div>
+
+              <div id="editor-planos"></div>
+
+              <p id="msg-planos" class="mensagem" role="alert"></p>
+              <button type="submit" id="botao-salvar-planos" class="botao">Salvar planos</button>
             </form>
           </details>
         </div>
