@@ -32,6 +32,7 @@ async function carregarEquipes() {
   // de atualização ainda não foi rodado), tenta com menos colunas, para o site
   // continuar funcionando durante a atualização.
   const colunas = [
+    "slug, nome, foto, aviso, aviso_em, tipo, apresentacao, servicos, whatsapp, instagram, planos",
     "slug, nome, foto, aviso, aviso_em, tipo, apresentacao, servicos, whatsapp, instagram",
     "slug, nome, foto, aviso, aviso_em",
     "slug, nome, foto"
