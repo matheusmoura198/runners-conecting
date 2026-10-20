@@ -1842,3 +1842,124 @@ a {
   margin-top: 1rem;
   text-align: center;
 }
+
+
+/* ---------- Planos da assessoria ---------- */
+
+.planos-oferta {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--azul);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.lista-planos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.plano {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  background: var(--branco);
+}
+
+.plano-destaque {
+  border: 2px solid var(--azul);
+}
+
+.plano-selo {
+  align-self: flex-start;
+  margin: 0 0 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--azul-claro);
+  color: var(--azul-escuro);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.plano-nome {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  color: var(--azul-escuro);
+}
+
+.plano-para {
+  margin: 0.1rem 0 0.75rem;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.plano-de {
+  margin: 0;
+  color: var(--texto-suave);
+  text-decoration: line-through;
+}
+
+.plano-preco {
+  margin: 0 0 0.75rem;
+  font-family: var(--fonte-titulo);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--preto);
+}
+
+.plano-mes {
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+}
+
+.plano-beneficios {
+  flex: 1;
+  margin: 0 0 1.25rem;
+  padding-left: 1.2rem;
+  font-size: 0.97rem;
+}
+
+.plano-beneficios li {
+  margin-bottom: 0.3rem;
+}
+
+.planos-aviso {
+  margin: 1rem 0 0;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.plano-editor {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 10px;
+}
+
+.plano-editor legend {
+  padding: 0 0.4rem;
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+
+.plano-editor-destaque {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .lista-planos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
