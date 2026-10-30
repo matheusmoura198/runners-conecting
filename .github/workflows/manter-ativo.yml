@@ -1,1 +1,45 @@
+# =========================================================
+# MANTER O SUPABASE ATIVO
+#
+# O plano gratuito do Supabase pausa o projeto quando passa uma
+# semana com pouca atividade. Este arquivo faz o GitHub consultar o
+# banco duas vezes por dia, de graça, para o projeto não pausar.
+#
+# Onde colocar: no repositório do site, no caminho
+#   .github/workflows/manter-ativo.yml
+#
+# Antes de funcionar, crie dois "secrets" no repositório
+# (Settings > Secrets and variables > Actions > New repository secret):
+#   SUPABASE_URL        -> a mesma URL do supabase-config.js
+#   SUPABASE_ANON_KEY   -> a mesma chave pública do supabase-config.js
+# =========================================================
 
+name: Manter o Supabase ativo
+
+on:
+  schedule:
+    # Todo dia às 09:17 e às 21:17 (horário UTC)
+    - cron: "17 9,21 * * *"
+  # Permite rodar na mão, pela aba Actions, para testar
+  workflow_dispatch:
+
+jobs:
+  consultar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer uma consulta simples ao banco
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          status=$(curl -s -o resposta.txt -w "%{http_code}" \
+            -X POST "$SUPABASE_URL/rest/v1/rpc/nome_disponivel" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"n":"verificacao-manter-ativo"}')
+          echo "Resposta do Supabase: $status"
+          cat resposta.txt
+          if [ "$status" != "200" ]; then
+            echo "A consulta falhou. Confira os secrets e se o projeto está pausado."
+            exit 1
+          fi
